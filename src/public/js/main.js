@@ -12,5 +12,14 @@ socket.emit("mensaje", "hola mundo, soy el cliente");
 //recibimos el mensaje del servidor
 
 socket.on("saludo", (data) => {
-    console.log(data);
-})
+  console.log(data);
+});
+
+//recibimos el array de usuarios del server
+socket.on("usuarios", (data) => {
+  const listaUsuarios = document.getElementById("listaUsuarios");
+  listaUsuarios.innerHTML = "";
+  data.forEach((usuario) => {
+    listaUsuarios.innerHTML += `<li>${usuario.nombre} ${usuario.apellido} </li>`;
+  });
+});
